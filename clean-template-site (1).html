@@ -1,0 +1,276 @@
+<html><head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #edf2f7;
+            padding: 0.75rem 1.5rem;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 32px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            width: 250px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+        }
+
+        .build-quiz-btn {
+            background: #4a5568;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .build-quiz-btn:hover {
+            background: #2d3748;
+        }
+
+        .categories {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            overflow-x: auto;
+            background: #fff;
+            border-bottom: 1px solid #edf2f7;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-tag {
+            padding: 0.375rem 1rem;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .category-tag:hover {
+            background: #edf2f7;
+        }
+
+        .category-tag.active {
+            background: #4a5568;
+            color: #fff;
+            border-color: #4a5568;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .template-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .template-image {
+            position: relative;
+            padding-top: 100%;
+            background: #f7fafc;
+        }
+
+        .template-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .template-content {
+            padding: 1rem;
+        }
+
+        .template-title {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .template-price {
+            font-size: 1rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .preview-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255,255,255,0.9);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #4a5568;
+        }
+
+        .quiz-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            display: none;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #4a5568;
+            background: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="/api/placeholder/96/32" alt="Printelle" class="logo">
+            <div class="search-bar">
+                <input type="text" placeholder="Search designs...">
+            </div>
+            <button class="build-quiz-btn">Build My Event</button>
+        </div>
+    </header>
+
+    <div class="categories">
+        <div class="category-tag active">All Templates</div>
+        <div class="category-tag">Wedding Bundles</div>
+        <div class="category-tag">Wedding Signs</div>
+        <div class="category-tag">Place Cards</div>
+        <div class="category-tag">Table Numbers</div>
+        <div class="category-tag">Invitations</div>
+        <div class="category-tag">Thank You Cards</div>
+    </div>
+
+    <main class="template-grid">
+        <div class="template-card">
+            <div class="template-image">
+                <img src="/api/placeholder/300/300" alt="Wedding Bundle">
+                <span class="preview-badge">Preview</span>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Ultimate Wedding Bundle</h3>
+                <p class="template-price">$108.49</p>
+            </div>
+        </div>
+
+        <!-- Added more template cards for demonstration -->
+        <div class="template-card">
+            <div class="template-image">
+                <img src="/api/placeholder/300/300" alt="Place Cards">
+                <span class="preview-badge">Preview</span>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Elegant Place Cards</h3>
+                <p class="template-price">$24.99</p>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-image">
+                <img src="/api/placeholder/300/300" alt="Table Numbers">
+                <span class="preview-badge">Preview</span>
+            </div>
+            <div class="template-content">
+                <h3 class="template-title">Modern Table Numbers</h3>
+                <p class="template-price">$19.99</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="quiz-modal">
+        <div class="quiz-question">
+            <h2>What type of event are you planning?</h2>
+        </div>
+        <div class="quiz-options">
+            <div class="quiz-option">Wedding</div>
+            <div class="quiz-option">Birthday</div>
+            <div class="quiz-option">Baby Shower</div>
+            <div class="quiz-option">Other Celebration</div>
+        </div>
+    </div>
+</body></html>
